@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Double Take Boston</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .pg-hero {
+      padding: 5rem 2.5rem 3rem;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .pg-title {
+      font-family: 'Unbounded', sans-serif; font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      line-height: 0.9; letter-spacing: -0.02em;
+    }
+    .pg-title .t1 { display: block; color: var(--white); }
+    .pg-title .t2 {
+      display: block;
+      background: linear-gradient(90deg, var(--green), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .pg-sub {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.2rem; color: rgba(245,240,255,0.6);
+      margin-top: 1.5rem; max-width: 500px; line-height: 1.65;
+    }
+    .pg-ghost {
+      position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Unbounded', sans-serif; font-weight: 900;
+      font-size: clamp(5rem, 16vw, 14rem);
+      color: transparent; -webkit-text-stroke: 1px rgba(0,255,224,0.06);
+      pointer-events: none; user-select: none; line-height: 1;
+    }
+
+```
+/* ── PRICING NOTE ── */
+.note-strip {
+  position: relative; z-index: 1;
+  padding: 2.5rem 2.5rem;
+  background: rgba(191,95,255,0.05);
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;
+}
+.note-icon {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: 3rem; color: var(--purple); flex-shrink: 0; line-height: 1;
+}
+.note-text {
+  font-size: 1.05rem; font-weight: 600;
+  color: rgba(245,240,255,0.7); line-height: 1.7;
+  border-left: 3px solid var(--purple); padding-left: 1.5rem;
+}
+.note-text strong { color: var(--green); }
+
+/* ── PRICING GRID ── */
+.pricing-section { padding: 4rem 2.5rem; position: relative; z-index: 1; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem; margin-top: 2.5rem;
+}
+
+.pc {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 2.5rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.25s;
+}
+.pc:hover { transform: translateY(-5px); }
+.pc.hot-t { border: 2px solid var(--teal); background: rgba(0,255,224,0.04); box-shadow: 0 0 50px rgba(0,255,224,0.08); }
+.pc.hot-p { border: 2px solid var(--purple); background: rgba(191,95,255,0.04); box-shadow: 0 0 50px rgba(191,95,255,0.08); }
+
+.pc-badge {
+  position: absolute; top: -1px; right: 1.5rem;
+  font-family: 'Syne Mono', monospace; font-size: 0.52rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.28rem 0.8rem; border-radius: 0 0 8px 8px;
+}
+.bg-t { background: var(--teal); color: var(--bg); }
+.bg-p { background: var(--purple); color: var(--white); }
+.bg-g { background: var(--green); color: var(--bg); }
+
+.pc-type { font-family: 'Syne Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.pc-name { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--white); }
+
+.pc-price {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: 5.5rem; line-height: 1; margin: 0.75rem 0 0.2rem;
+  letter-spacing: -0.03em;
+}
+.pc-price sup { font-size: 2rem; vertical-align: super; }
+.col-t { color: var(--teal); }
+.col-p { color: var(--purple); }
+.col-g { color: var(--green); }
+.col-w { color: var(--white); }
+
+.pc-dur { font-family: 'Syne Mono', monospace; font-size: 0.58rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+.pc-features { list-style: none; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; }
+.pc-features li {
+  font-size: 0.88rem; font-weight: 600;
+  color: rgba(245,240,255,0.8);
+  padding: 0.38rem 0;
+  display: flex; gap: 0.75rem; align-items: center;
+}
+.pc-features li::before { content: '✦'; font-size: 0.5rem; flex-shrink: 0; }
+.hot-t .pc-features li::before { color: var(--teal); }
+.hot-p .pc-features li::before { color: var(--purple); }
+.pc:not(.hot-t):not(.hot-p) .pc-features li::before { color: var(--green); }
+
+/* wide card for add-on */
+.pc-wide { grid-column: 1 / -1; }
+
+/* ── CTA ── */
+.cta-strip {
+  position: relative; z-index: 1;
+  padding: 4rem 2.5rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  background: linear-gradient(135deg, rgba(200,255,0,0.03), rgba(0,255,224,0.03));
+}
+.cta-text {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1;
+}
+
+@media(max-width:800px){
+  .pricing-grid{grid-template-columns:1fr;}
+  .pc-wide{grid-column:auto;}
+  .pg-ghost{display:none;}
+}
+```
+
+  </style>
+</head>
+<body>
+  <div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">DT</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="book.html">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <section class="pg-hero">
+      <div class="pg-ghost">$$</div>
+      <div class="label">Our Rates</div>
+      <h1 class="pg-title">
+        <span class="t1">HONEST</span>
+        <span class="t2">PRICES.</span>
+      </h1>
+      <p class="pg-sub">No BS. No hidden fees. No upsells. What you see is what you pay — because we do this because we love it.</p>
+    </section>
+
+```
+<div class="note-strip">
+  <div class="note-icon">!!!</div>
+  <p class="note-text">
+    We price this way because we genuinely love photography and think <strong>everyone deserves beautiful photos</strong>.
+    We use sustainable equipment and stay as frugal as possible without sacrificing quality.
+    We're not trying to make a huge profit — we just want to shoot.
+  </p>
+</div>
+
+<section class="pricing-section">
+  <div class="label">Packages</div>
+  <div class="pricing-grid reveal">
+    <div class="pc">
+      <div class="pc-type">Mini Session</div>
+      <div class="pc-name">Quick &amp; Clean</div>
+      <div class="pc-price col-g"><sup>$</sup>35</div>
+      <div class="pc-dur">30 min · 1 location · 10+ edited photos</div>
+      <ul class="pc-features">
+        <li>30-minute shoot</li>
+        <li>1 outdoor Boston location</li>
+        <li>10+ professionally edited images</li>
+        <li>Online gallery (48–72 hrs)</li>
+        <li>Personal usage license</li>
+      </ul>
+    </div>
+
+    <div class="pc hot-t">
+      <div class="pc-badge bg-t">Most Popular</div>
+      <div class="pc-type">Standard Session</div>
+      <div class="pc-name">Full Experience</div>
+      <div class="pc-price col-t"><sup>$</sup>75</div>
+      <div class="pc-dur">1 hr · 2 locations · 25+ edited photos</div>
+      <ul class="pc-features">
+        <li>1-hour shoot</li>
+        <li>Up to 2 Boston locations</li>
+        <li>25+ professionally edited images</li>
+        <li>Online gallery (48 hrs)</li>
+        <li>Outfit change welcome</li>
+        <li>Personal usage license</li>
+      </ul>
+    </div>
+
+    <div class="pc hot-p">
+      <div class="pc-badge bg-p">Best Value</div>
+      <div class="pc-type">Extended Session</div>
+      <div class="pc-name">All Day Energy</div>
+      <div class="pc-price col-p"><sup>$</sup>130</div>
+      <div class="pc-dur">2 hrs · 3 locations · 50+ edited photos</div>
+      <ul class="pc-features">
+        <li>2-hour shoot with BOTH of us</li>
+        <li>Up to 3 Boston locations</li>
+        <li>50+ professionally edited images</li>
+        <li>Priority gallery (24 hrs)</li>
+        <li>Print-ready hi-res files</li>
+        <li>Commercial license available</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <div class="pc-type">Event Coverage</div>
+      <div class="pc-name">Full Evening</div>
+      <div class="pc-price col-w"><sup>$</sup>180</div>
+      <div class="pc-dur">3 hrs · both of us · 75+ photos</div>
+      <ul class="pc-features">
+        <li>3 hours with both photographers</li>
+        <li>75+ professionally edited images</li>
+        <li>Candid + portrait coverage</li>
+        <li>Priority gallery (24 hrs)</li>
+        <li>Full commercial usage license</li>
+        <li>Custom album layout (+$30)</li>
+      </ul>
+    </div>
+
+    <div class="pc pc-wide">
+      <div class="pc-badge bg-g">Optional Add-On</div>
+      <div class="pc-type">Prints &amp; Physicals</div>
+      <div class="pc-name">Take It Offline</div>
+      <div class="pc-price col-g"><sup>$</sup>15+</div>
+      <div class="pc-dur">Per item · handled ordering &amp; delivery</div>
+      <ul class="pc-features" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+        <li>High-quality photo prints</li>
+        <li>Custom sticker packs</li>
+        <li>Framed photos (multiple sizes)</li>
+        <li>Canvas wall art</li>
+        <li>Print-ready color optimization</li>
+        <li>We handle ordering &amp; delivery</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip reveal">
+  <div class="cta-text">
+    <span style="color:var(--green)">Let's</span> book<br/>
+    <span style="color:var(--purple)">your shoot.</span>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="book.html" class="btn btn-green">Book Now ✦</a>
+    <a href="services.html" class="btn btn-outline">See Services</a>
+  </div>
+</div>
+
+<footer>
+  <a class="footer-logo" href="index.html">DOUBLE TAKE</a>
+  <p style="font-style:italic;font-family:'Playfair Display',serif;color:var(--muted)">Photography for the people of Boston.</p>
+  <p>© 2026 Double Take By Lita · Boston, MA</p>
+</footer>
+```
+
+  </div>
+
+  <script>
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} }), {threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+    let ly=0; const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;nav.style.transform=(y>80&&y>ly)?'translateY(-100%)':'translateY(0)';ly=y;});
+  </script>
+
+</body>
+</html>

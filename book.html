@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Shoot — Double Take Boston</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .pg-hero {
+      padding: 5rem 2.5rem 3rem;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .pg-title {
+      font-family: 'Unbounded', sans-serif; font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      line-height: 0.9; letter-spacing: -0.02em;
+    }
+    .pg-title .t1 { display: block; color: var(--white); }
+    .pg-title .t2 {
+      display: block;
+      background: linear-gradient(90deg, var(--purple), var(--pink, #ff2d78));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .pg-sub {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.2rem; color: rgba(245,240,255,0.6);
+      margin-top: 1.5rem; max-width: 500px; line-height: 1.65;
+    }
+    .pg-ghost {
+      position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Unbounded', sans-serif; font-weight: 900;
+      font-size: clamp(5rem, 16vw, 14rem);
+      color: transparent; -webkit-text-stroke: 1px rgba(191,95,255,0.06);
+      pointer-events: none; user-select: none; line-height: 1;
+    }
+
+```
+/* ── CONTACT GRID ── */
+.contact-section {
+  padding: 4rem 2.5rem;
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: start;
+}
+
+/* LEFT */
+.contact-info-block { }
+.contact-tagline {
+  font-size: 1.15rem; font-weight: 600;
+  color: rgba(245,240,255,0.7); line-height: 1.75;
+  margin-top: 1rem; margin-bottom: 2.5rem;
+}
+
+.info-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.info-label {
+  font-family: 'Syne Mono', monospace; font-size: 0.55rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--teal);
+  min-width: 70px; padding-top: 0.1rem; flex-shrink: 0;
+}
+.info-val { font-size: 0.98rem; font-weight: 700; color: var(--white); }
+.info-val a { color: var(--white); text-decoration: none; }
+.info-val a:hover { color: var(--teal); }
+
+.social-links { display: flex; gap: 0.6rem; margin-top: 2rem; }
+.sl {
+  font-family: 'Syne Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.45rem 0.95rem; border-radius: 20px;
+  text-decoration: none; transition: transform 0.2s;
+}
+.sl:hover { transform: translateY(-2px); }
+.sl-ig { background: rgba(191,95,255,0.15); color: var(--purple); border: 1px solid rgba(191,95,255,0.25); }
+.sl-tt { background: rgba(0,255,224,0.1); color: var(--teal); border: 1px solid rgba(0,255,224,0.2); }
+
+/* price reminder */
+.price-reminder {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: rgba(200,255,0,0.06);
+  border: 1px solid rgba(200,255,0,0.2);
+  border-radius: 12px;
+  border-left: 4px solid var(--green);
+}
+.pr-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: 0.75rem; color: var(--green); letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.pr-list { list-style: none; }
+.pr-list li {
+  font-family: 'Syne Mono', monospace; font-size: 0.6rem;
+  color: rgba(245,240,255,0.65); padding: 0.25rem 0;
+  display: flex; justify-content: space-between;
+  border-bottom: 1px solid rgba(200,255,0,0.08);
+}
+.pr-list li:last-child { border: none; }
+.pr-list li span { color: var(--green); font-weight: 700; }
+
+/* RIGHT — FORM */
+.form-wrap { }
+
+form {
+  display: flex; flex-direction: column; gap: 1.1rem;
+}
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.fgroup { display: flex; flex-direction: column; gap: 0.45rem; }
+.flabel {
+  font-family: 'Syne Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple);
+}
+input[type=text], input[type=email], input[type=date], select, textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(191,95,255,0.22);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 600;
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--teal);
+  background: rgba(0,255,224,0.04);
+  box-shadow: 0 0 0 3px rgba(0,255,224,0.1);
+}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+select option { background: #0b0618; }
+textarea { resize: vertical; min-height: 120px; }
+
+.submit-btn {
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  color: var(--bg);
+  font-family: 'Syne Mono', monospace; font-size: 0.72rem;
+  font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 1rem 2.5rem; border: none; border-radius: 8px;
+  cursor: pointer; align-self: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,255,224,0.3); }
+
+@media(max-width:800px){
+  .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+  .frow { grid-template-columns: 1fr; }
+  .pg-ghost { display: none; }
+}
+```
+
+  </style>
+</head>
+<body>
+  <div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">DT</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="book.html" class="active">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <section class="pg-hero">
+      <div class="pg-ghost">BOOK</div>
+      <div class="label">Let's Shoot</div>
+      <h1 class="pg-title">
+        <span class="t1">BOOK</span>
+        <span class="t2">A SHOOT.</span>
+      </h1>
+      <p class="pg-sub">Drop us a message and we'll get back to you within 24 hours. Easy, fast, no commitment required.</p>
+    </section>
+
+```
+<section class="contact-section">
+  <!-- LEFT -->
+  <div class="contact-info-block reveal">
+    <div class="label">Contact Info</div>
+    <p class="contact-tagline">Ready to book? Got questions? Just wanna say hi? We're quick to respond :)</p>
+
+    <div class="info-item">
+      <span class="info-label">Email</span>
+      <span class="info-val"><a href="mailto:doubletakeboston@gmail.com">doubletakeboston@gmail.com</a></span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Phone/Text</span>
+      <span class="info-val"><a href="tel:6176820362">(617) 682–0362</a></span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Based In</span>
+      <span class="info-val">Boston, MA — all neighborhoods</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Hours</span>
+      <span class="info-val">Flexible — morning to golden hour</span>
+    </div>
+
+    <div class="social-links">
+      <a class="sl sl-ig" href="#" target="_blank">@ Instagram</a>
+      <a class="sl sl-tt" href="#" target="_blank">@ TikTok</a>
+    </div>
+
+    <div class="price-reminder">
+      <div class="pr-title">Quick Price Reference</div>
+      <ul class="pr-list">
+        <li>Mini Session (30 min) <span>$35</span></li>
+        <li>Standard Session (1 hr) <span>$75</span></li>
+        <li>Extended Session (2 hrs) <span>$130</span></li>
+        <li>Event Coverage (3 hrs) <span>$180</span></li>
+        <li>Graduation Shoots <span>From $20</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div class="form-wrap reveal" style="transition-delay:0.15s;">
+    <div class="label">The Form</div>
+
+    <form action="https://formspree.io/f/xzdywjkd" method="POST">
+      <input type="text" name="_gotcha" style="display:none" />
+
+      <div class="frow">
+        <div class="fgroup">
+          <label class="flabel">First Name</label>
+          <input type="text" name="first_name" placeholder="First name" />
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Last Name</label>
+          <input type="text" name="last_name" placeholder="Last name" />
+        </div>
+      </div>
+
+      <div class="fgroup">
+        <label class="flabel">Email</label>
+        <input type="email" name="email" placeholder="you@email.com" />
+      </div>
+
+      <div class="frow">
+        <div class="fgroup">
+          <label class="flabel">Session Type</label>
+          <select name="session_type">
+            <option value="">Pick a type...</option>
+            <option>Mini Session ($35)</option>
+            <option>Standard Session ($75)</option>
+            <option>Extended Session ($130)</option>
+            <option>Event Coverage ($180)</option>
+            <option>Graduation Shoot (from $20)</option>
+            <option>Other / Custom</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Preferred Date</label>
+          <input type="date" name="preferred_date" />
+        </div>
+      </div>
+
+      <div class="fgroup">
+        <label class="flabel">Tell Us More</label>
+        <textarea name="message" placeholder="What's the occasion? Any location ideas? Questions? Hit us!"></textarea>
+      </div>
+
+      <button class="submit-btn" type="submit">Send It ✦</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <a class="footer-logo" href="index.html">DOUBLE TAKE</a>
+  <p style="font-style:italic;font-family:'Playfair Display',serif;color:var(--muted)">Photography for the people of Boston.</p>
+  <p>© 2026 Double Take By Lita · Boston, MA</p>
+</footer>
+```
+
+  </div>
+
+  <script>
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} }), {threshold:0.06});
+    document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+    let ly=0; const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;nav.style.transform=(y>80&&y>ly)?'translateY(-100%)':'translateY(0)';ly=y;});
+  </script>
+
+</body>
+</html>
